@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { Routes, Route, Link } from "react-router-dom";
+import createForm from "./components/createForm";
+import list from "./components/list";
+import updateUser from "./components/updateUser";
 
 class App extends Component {
     constructor(props) {
@@ -22,11 +26,15 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">{this.state.apiResponse}</p>
+
+                <Routes>
+
+                    <Route exact path={"/users/createForm"} component={createForm} />
+                    <Route exact path={"/users/list"} component={list} />
+                    <Route exact path={"/users/updateUser"} component={updateUser} />
+
+                </Routes>
+
             </div>
         );
     }
