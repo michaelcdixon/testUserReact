@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+// var session = require("express-session");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -25,6 +26,31 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/testAPI", testAPIRouter);
+
+// basic user session management if required
+// app.use(
+//     session({
+//         cookie: {
+//             sameSite: true,
+//             httpOnly: true,
+//             maxAge: 600000, // in ms
+//         },
+//         rolling: true, 
+//     })
+// );
+
+// function to obtain the logged in user if including session
+
+// function getCurrentLoggedUser(req, res, next) {
+//     if (req.session && req.session.currentUser) {
+//         app.locals.loggedInUser = req.session.currentUser.username;
+//     } else {
+//         app.locals.loggedInUser = "";
+//     }
+//     next();
+// }
+
+// app.use(getCurrentLoggedUser);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
